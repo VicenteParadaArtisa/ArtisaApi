@@ -4,11 +4,15 @@ FROM eclipse-temurin:17-jdk-jammy as builder
 # Establece el directorio de trabajo
 WORKDIR /app
 
-# Copia los archivos de construcción
-COPY mvnw .
-COPY .mvn .mvn
+# Copia los archivos de construcción y genera el wrapper de Maven si no existe
 COPY pom.xml .
 COPY src src
+RUN mvn wrapper:wrapper
+
+# Copia los archivos del wrapper de Maven
+COPY mvnw .
+COPY .mvn .mvn
+
 
 # Construye la aplicación con Maven
 RUN ./mvnw clean package -DskipTests
