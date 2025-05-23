@@ -7,7 +7,6 @@ WORKDIR /app
 # Copia los archivos de construcción y genera el wrapper de Maven si no existe
 COPY pom.xml .
 COPY src src  
-RUN mvn wrapper:wrapper
 
 # Copia los archivos del wrapper de Maven
 COPY mvnw .
