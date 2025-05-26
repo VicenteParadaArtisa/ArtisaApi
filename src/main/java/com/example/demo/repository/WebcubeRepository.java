@@ -12,4 +12,13 @@ public interface WebcubeRepository extends MongoRepository<Webcube, String> {
 
     @Query(value = "?0", fields = "{}")
     List<Webcube> findByCustomQuery(String query);
+
+    // Buscar por dominio del vehículo
+    List<Webcube> findByEquipo_Dominio(String dominio);
+
+    // Buscar por ciudad en ubicación
+    List<Webcube> findByUbicacion_City(String city);
+
+    // Buscar por marca del equipo
+    List<Webcube> findByEquipo_Marca(String marca);
 }
