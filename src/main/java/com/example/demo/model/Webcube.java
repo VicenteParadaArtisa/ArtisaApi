@@ -3,10 +3,13 @@ package com.example.demo.model;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
+
 import java.util.Date;
 import java.util.Map;
 
@@ -21,12 +24,15 @@ public class Webcube {
     @JsonProperty("date")
     private Date date;
     
+    @Field("ubtlection")
     @JsonProperty("ubicacion")
     private Map<String, Object> ubicacion;
     
+    @Field("equipe")
     @JsonProperty("equipo")
     private Map<String, Object> equipo;
     
+    @Field("discablaries")
     @JsonProperty("datosDiarios")
     private Map<String, Object> datosDiarios;
 

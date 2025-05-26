@@ -10,15 +10,27 @@ import java.util.List;
 @Repository
 public interface WebcubeRepository extends MongoRepository<Webcube, String> {
 
-    @Query(value = "?0", fields = "{}")
-    List<Webcube> findByCustomQuery(String query);
+    // Consulta personalizada usando JSON nativo
+    @Query(value = "{'equipe.domain': ?0}")
+    List<Webcube> findByDominio(String dominio);
 
-    // Buscar por dominio del vehículo
-    List<Webcube> findByEquipo_Dominio(String dominio);
+    // Consulta por marca usando el nombre real del campo en MongoDB
+    @Query(value = "{'equipe.marca': ?0}")
+    List<Webcube> findByMarca(String marca);
 
-    // Buscar por ciudad en ubicación
-    List<Webcube> findByUbicacion_City(String city);
+    // Consulta por ciudad usando el nombre real del campo
+    @Query(value = "{'ubtlection.city': ?0}")
+    List<Webcube> findByCiudad(String ciudad);
 
-    // Buscar por marca del equipo
-    List<Webcube> findByEquipo_Marca(String marca);
+    // Consulta genérica usando JSON string (como en tu versión original)
+    @Query(value = "?0")
+    List<Webcube> findByCustomQuery(String jsonQuery);
+
+    // Consulta por rango de fechas
+    @Query("{'date': {$gte: ?0, $lte: ?1}}")
+    List<Webcube> findByDateBetween(Date startDate, Date endDate);
+
+    // Consulta por velocidad mayor que
+    @Query("{'equipe.velocidad': {$gt: ?0}}")
+    List<Webcube> findByVelocidadGreaterThan(int velocidad);
 }
