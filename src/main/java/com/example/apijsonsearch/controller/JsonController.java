@@ -18,7 +18,7 @@ public class JsonController {
         this.jsonService = jsonService;
     }
 
-    @GetMapping("/registro/{busqueda}")
+    @PostMapping("/registro/{busqueda}")
     public List<Document> buscar(@PathVariable String busqueda) {
         return jsonService.searchJsonDocuments(busqueda);
     }
