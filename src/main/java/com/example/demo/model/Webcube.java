@@ -3,40 +3,19 @@ package com.example.demo.model;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 
 import java.util.Date;
-import java.util.Map;
 
 @Document(collection = "webcubes")
-@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Webcube {
-    
-    @Id
-    @JsonSerialize(using = ToStringSerializer.class)
-    private ObjectId id;
-    
-    @JsonProperty("date")
-    private Date date;
-    
-    @Field("ubtlection")
-    @JsonProperty("ubicacion")
-    private Map<String, Object> ubicacion;
-    
-    @Field("equipe")
-    @JsonProperty("equipo")
-    private Map<String, Object> equipo;
-    
-    @Field("discablaries")
-    @JsonProperty("datosDiarios")
-    private Map<String, Object> datosDiarios;
 
-    // Getters y Setters
+    @Id
+    private ObjectId id;
+    private Date date;
+    private Ubicacion ubicacion;
+    private Equipo equipo;
+    private DatosDiarios datosDiarios;
+
     public String getId() {
         return id != null ? id.toHexString() : null;
     }
@@ -53,27 +32,27 @@ public class Webcube {
         this.date = date;
     }
 
-    public Map<String, Object> getUbicacion() {
+    public Ubicacion getUbicacion() {
         return ubicacion;
     }
 
-    public void setUbicacion(Map<String, Object> ubicacion) {
+    public void setUbicacion(Ubicacion ubicacion) {
         this.ubicacion = ubicacion;
     }
 
-    public Map<String, Object> getEquipo() {
+    public Equipo getEquipo() {
         return equipo;
     }
 
-    public void setEquipo(Map<String, Object> equipo) {
+    public void setEquipo(Equipo equipo) {
         this.equipo = equipo;
     }
 
-    public Map<String, Object> getDatosDiarios() {
+    public DatosDiarios getDatosDiarios() {
         return datosDiarios;
     }
 
-    public void setDatosDiarios(Map<String, Object> datosDiarios) {
+    public void setDatosDiarios(DatosDiarios datosDiarios) {
         this.datosDiarios = datosDiarios;
     }
 }

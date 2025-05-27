@@ -17,34 +17,25 @@ public class MongoConfig extends AbstractMongoClientConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "dplores"; // Nombre de tu base de datos en MongoDB
+        return "dplores"; // Ajusta según el nombre real en tu Mongo Atlas si es distinto
     }
 
     @Override
     public MongoClient mongoClient() {
-        ConnectionString connectionString = new ConnectionString("mongodb://localhost:27017/dplores");
-        MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
-            .applyConnectionString(connectionString)
-            .build();
-
-        return MongoClients.create(mongoClientSettings);
+        ConnectionString connectionString = new ConnectionString("mongodb+srv://admin:AdminArtisa2025.@jsonrepoartisa.83kjdw0.mongodb.net/?retryWrites=true&w=majority&appName=JsonRepoArtisa");
+        MongoClientSettings settings = MongoClientSettings.builder()
+                .applyConnectionString(connectionString)
+                .build();
+        return MongoClients.create(settings);
     }
 
     @Override
     protected boolean autoIndexCreation() {
-        return true; // Habilita la creación automática de índices
+        return true;
     }
 
     @Override
     public Collection<String> getMappingBasePackages() {
         return Collections.singleton("com.example.demo");
     }
-
-    // Configuración adicional para producción (SSL, autenticación)
-    /*
-    @Bean
-    public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongoClient(), getDatabaseName());
-    }
-    */
 }
