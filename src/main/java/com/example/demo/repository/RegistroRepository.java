@@ -8,5 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RegistroRepository extends MongoRepository<Registro, String> {
+
+    // Busca por el campo 'dominio' dentro del objeto 'equipo'
     List<Registro> findByEquipoDominio(String dominio);
 }
