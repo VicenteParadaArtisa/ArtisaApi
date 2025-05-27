@@ -1,26 +1,28 @@
 package com.example.demo.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "webcubes")
+@Document(collection = "webcube")
 public class Webcube {
 
     @Id
-    private ObjectId id;
+    private String id;
+
     private Date date;
     private Ubicacion ubicacion;
     private Equipo equipo;
     private DatosDiarios datosDiarios;
 
+    // Getters y Setters
+
     public String getId() {
-        return id != null ? id.toHexString() : null;
+        return id;
     }
 
-    public void setId(ObjectId id) {
+    public void setId(String id) {
         this.id = id;
     }
 
