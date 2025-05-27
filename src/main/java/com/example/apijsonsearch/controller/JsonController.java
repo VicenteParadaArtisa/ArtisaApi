@@ -1,40 +1,25 @@
 package com.example.apijsonsearch.controller;
 
 import com.example.apijsonsearch.model.JsonDoc;
-import com.example.apijsonsearch.repository.JsonRepository;
+import com.example.apijsonsearch.service.JsonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/registro")
+@RequestMapping("/api")
 public class JsonController {
 
-    @Autowired
-    private MongoTemplate mongoTemplate;
+    private final JsonService jsonService;
 
     @Autowired
-    private JsonRepository jsonRepository;
-
-    @GetMapping("/{valor}")
-    public List<JsonDoc> buscarPorValor(@PathVariable String valor) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("$where")
-            .is("function() { return JSON.stringify(this).toLowerCase().includes('" + valor.toLowerCase() + "'); }"));
-        return mongoTemplate.find(query, JsonDoc.class);
+    public JsonController(JsonService jsonService) {
+        this.jsonService = jsonService;
     }
 
-    @GetMapping
-    public List<JsonDoc> obtenerTodos() {
-        return jsonRepository.findAll();
-    }
-
-    @PostMapping
-    public JsonDoc guardar(@RequestBody JsonDoc doc) {
-        return jsonRepository.save(doc);
+    @GetMapping("/registro/{busqueda}")
+    public List<JsonDoc> buscar(@PathVariable String busqueda) {
+        return jsonService.searchJsonDocuments(busqueda);
     }
 }
