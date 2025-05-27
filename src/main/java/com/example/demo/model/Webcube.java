@@ -3,7 +3,7 @@ package com.example.demo.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.time.Instant;
 
 @Document(collection = "webcube")
 public class Webcube {
@@ -11,7 +11,7 @@ public class Webcube {
     @Id
     private String id;
 
-    private Date date;
+    private Instant date;
     private Ubicacion ubicacion;
     private Equipo equipo;
     private DatosDiarios datosDiarios;
@@ -26,11 +26,11 @@ public class Webcube {
         this.id = id;
     }
 
-    public Date getDate() {
+    public Instant getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Instant date) {
         this.date = date;
     }
 

@@ -7,7 +7,7 @@ public class Equipo {
     private String nombre;
     private String marca;
     private String modelo;
-    private int velocidad;
+    private double velocidad;
     private String notas;
     private String numChasis;
     private String numFreMot;
@@ -65,11 +65,11 @@ public class Equipo {
         this.modelo = modelo;
     }
 
-    public int getVelocidad() {
+    public double getVelocidad() {
         return velocidad;
     }
 
-    public void setVelocidad(int velocidad) {
+    public void setVelocidad(double velocidad) {
         this.velocidad = velocidad;
     }
 
