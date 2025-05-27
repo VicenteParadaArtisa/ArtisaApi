@@ -13,11 +13,15 @@ public class RegistroService {
     @Autowired
     private RegistroRepository registroRepository;
 
-    public List<Registro> findAll() {
+    public List<Registro> obtenerTodosLosRegistros() {
         return registroRepository.findAll();
     }
 
-    public Registro findById(String id) {
-        return registroRepository.findById(id).orElse(null);
+    public List<Registro> obtenerRegistrosPorDominio(String dominio) {
+        return registroRepository.findByEquipoDominio(dominio);
+    }
+
+    public Registro guardarRegistro(Registro registro) {
+        return registroRepository.save(registro);
     }
 }

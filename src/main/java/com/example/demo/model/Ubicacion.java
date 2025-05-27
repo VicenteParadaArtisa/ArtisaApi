@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 public class Ubicacion {
+
     private double latitude1;
     private double longitude1;
     private double latitude2;
@@ -10,8 +11,9 @@ public class Ubicacion {
     private String city;
     private String ubicacion_descripcion;
 
-    // Getters y Setters
+    public Ubicacion() {}
 
+    // Getters y Setters
     public double getLatitude1() {
         return latitude1;
     }

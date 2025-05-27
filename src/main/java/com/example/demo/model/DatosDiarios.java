@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 public class DatosDiarios {
+
     private String tiempoTotal;
     private String tiempoConduc;
     private String tiempoDeten;
@@ -11,19 +12,20 @@ public class DatosDiarios {
     private double rendimiento;
     private double consumRalen;
     private double consumConduc;
-    private double excesRpm;
+    private int excesRPM;
     private double frenoMotor;
     private double ralenti;
-    private int bandAmarilla;
-    private int manejEficiente;
-    private int bandaRoja;
+    private int bandAmari;
+    private double manejEfi;
+    private int bandaRoj;
     private int torque;
-    private double cruiseCtrl;
-    private int manejInercial;
+    private int cruiseCtrl;
+    private int manejInerc;
     private int calific;
 
-    // Getters y Setters
+    public DatosDiarios() {}
 
+    // Getters y Setters
     public String getTiempoTotal() {
         return tiempoTotal;
     }
@@ -104,12 +106,12 @@ public class DatosDiarios {
         this.consumConduc = consumConduc;
     }
 
-    public double getExcesRpm() {
-        return excesRpm;
+    public int getExcesRPM() {
+        return excesRPM;
     }
 
-    public void setExcesRpm(double excesRpm) {
-        this.excesRpm = excesRpm;
+    public void setExcesRPM(int excesRPM) {
+        this.excesRPM = excesRPM;
     }
 
     public double getFrenoMotor() {
@@ -128,28 +130,28 @@ public class DatosDiarios {
         this.ralenti = ralenti;
     }
 
-    public int getBandAmarilla() {
-        return bandAmarilla;
+    public int getBandAmari() {
+        return bandAmari;
     }
 
-    public void setBandAmarilla(int bandAmarilla) {
-        this.bandAmarilla = bandAmarilla;
+    public void setBandAmari(int bandAmari) {
+        this.bandAmari = bandAmari;
     }
 
-    public int getManejEficiente() {
-        return manejEficiente;
+    public double getManejEfi() {
+        return manejEfi;
     }
 
-    public void setManejEficiente(int manejEficiente) {
-        this.manejEficiente = manejEficiente;
+    public void setManejEfi(double manejEfi) {
+        this.manejEfi = manejEfi;
     }
 
-    public int getBandaRoja() {
-        return bandaRoja;
+    public int getBandaRoj() {
+        return bandaRoj;
     }
 
-    public void setBandaRoja(int bandaRoja) {
-        this.bandaRoja = bandaRoja;
+    public void setBandaRoj(int bandaRoj) {
+        this.bandaRoj = bandaRoj;
     }
 
     public int getTorque() {
@@ -160,20 +162,20 @@ public class DatosDiarios {
         this.torque = torque;
     }
 
-    public double getCruiseCtrl() {
+    public int getCruiseCtrl() {
         return cruiseCtrl;
     }
 
-    public void setCruiseCtrl(double cruiseCtrl) {
+    public void setCruiseCtrl(int cruiseCtrl) {
         this.cruiseCtrl = cruiseCtrl;
     }
 
-    public int getManejInercial() {
-        return manejInercial;
+    public int getManejInerc() {
+        return manejInerc;
     }
 
-    public void setManejInercial(int manejInercial) {
-        this.manejInercial = manejInercial;
+    public void setManejInerc(int manejInerc) {
+        this.manejInerc = manejInerc;
     }
 
     public int getCalific() {

@@ -1,24 +1,25 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Document(collection = "registros") // Asegúrate que coincide con tu colección en MongoDB
+@Document(collection = "Jsons") // Cambia "Jsons" si tu colección tiene otro nombre
 public class Registro {
 
     @Id
     private String id;
 
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "UTC")
     private Date date;
+
     private Ubicacion ubicacion;
     private Equipo equipo;
     private DatosDiarios datosDiarios;
 
-    // Constructor vacío (requerido por Spring Data)
-    public Registro() {
-    }
+    public Registro() {}
 
     // Getters y Setters
     public String getId() {

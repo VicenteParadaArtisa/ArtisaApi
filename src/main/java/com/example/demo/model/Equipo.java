@@ -1,13 +1,14 @@
 package com.example.demo.model;
 
 public class Equipo {
+
     private String dominio;
     private String lastEvent;
     private String enFaena;
     private String nombre;
     private String marca;
     private String modelo;
-    private double velocidad;
+    private int velocidad;
     private String notas;
     private String numChasis;
     private String numFreMot;
@@ -15,8 +16,9 @@ public class Equipo {
     private String mesConsulta;
     private String anoConsulta;
 
-    // Getters y Setters
+    public Equipo() {}
 
+    // Getters y Setters
     public String getDominio() {
         return dominio;
     }
@@ -65,11 +67,11 @@ public class Equipo {
         this.modelo = modelo;
     }
 
-    public double getVelocidad() {
+    public int getVelocidad() {
         return velocidad;
     }
 
-    public void setVelocidad(double velocidad) {
+    public void setVelocidad(int velocidad) {
         this.velocidad = velocidad;
     }
 
