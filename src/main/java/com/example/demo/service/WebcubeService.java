@@ -24,51 +24,33 @@ public class WebcubeService {
     }
 
     public Webcube save(Webcube webcube) {
-        if (webcube == null) {
-            throw new IllegalArgumentException("El objeto Webcube no puede ser nulo.");
-        }
         return repository.save(webcube);
     }
 
     public void delete(String id) {
         if (!repository.existsById(id)) {
-            throw new IllegalArgumentException("No existe un Webcube con el ID: " + id);
+            throw new RuntimeException("Webcube con ID " + id + " no encontrado");
         }
         repository.deleteById(id);
     }
 
     public List<Webcube> getByDominio(String dominio) {
-        if (dominio == null || dominio.trim().isEmpty()) {
-            throw new IllegalArgumentException("El dominio no puede estar vacío.");
-        }
         return repository.findByDominio(dominio);
     }
 
     public List<Webcube> getByMarca(String marca) {
-        if (marca == null || marca.trim().isEmpty()) {
-            throw new IllegalArgumentException("La marca no puede estar vacía.");
-        }
         return repository.findByMarca(marca);
     }
 
     public List<Webcube> getByCiudad(String ciudad) {
-        if (ciudad == null || ciudad.trim().isEmpty()) {
-            throw new IllegalArgumentException("La ciudad no puede estar vacía.");
-        }
         return repository.findByCiudad(ciudad);
     }
 
     public List<Webcube> getByFecha(Date desde, Date hasta) {
-        if (desde == null || hasta == null || desde.after(hasta)) {
-            throw new IllegalArgumentException("Fechas inválidas. 'desde' debe ser anterior o igual a 'hasta'.");
-        }
         return repository.findByDateBetween(desde, hasta);
     }
 
     public List<Webcube> getVelocidadMayorA(int velocidad) {
-        if (velocidad < 0) {
-            throw new IllegalArgumentException("La velocidad debe ser mayor o igual a 0.");
-        }
         return repository.findByVelocidadGreaterThan(velocidad);
     }
 }
