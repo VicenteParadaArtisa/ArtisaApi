@@ -1,9 +1,0 @@
-target/
-.git
-.gitignore
-Dockerfile
-*.md
-*.iml
-*.log
-.idea/
-.vscode/

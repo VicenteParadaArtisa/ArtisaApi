@@ -1,14 +1,18 @@
-# Imagen base de Java con JDK 17
-FROM eclipse-temurin:17-jdk-alpine
+FROM maven:3.9.6-eclipse-temurin-21 AS builder
 
-# Directorio de trabajo dentro del contenedor
 WORKDIR /app
 
-# Copiar el JAR generado por Maven
-COPY target/webcube-api-0.0.1-SNAPSHOT.jar app.jar
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Exponer el puerto que usará el contenedor
+COPY src ./src
+RUN mvn clean package -DskipTests
+
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+COPY --from=builder /app/target/horario-0.0.1-SNAPSHOT.jar app.jar
+
 EXPOSE 8080
 
-# Comando para ejecutar la aplicación
 ENTRYPOINT ["java", "-jar", "app.jar"]
