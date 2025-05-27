@@ -1,11 +1,11 @@
-package com.example.demo;
+package com.example.apijsonsearch;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ApiJsonSearchApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(ApiJsonSearchApplication.class, args);
     }
 }
