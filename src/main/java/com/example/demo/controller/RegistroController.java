@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/registros")
@@ -22,9 +21,7 @@ public class RegistroController {
 
     @GetMapping("/{dominio}")
     public List<Registro> obtenerPorDominio(@PathVariable String dominio) {
-        return registroRepository.findAll().stream()
-                .filter(reg -> reg.getEquipo() != null && dominio.equalsIgnoreCase(reg.getEquipo().getDominio()))
-                .collect(Collectors.toList());
+        return registroRepository.buscarPorDominio(dominio);
     }
 
     @PostMapping
