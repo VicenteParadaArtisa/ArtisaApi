@@ -1,7 +1,7 @@
 package com.example.apijsonsearch.controller;
 
-import com.example.apijsonsearch.model.JsonDoc;
 import com.example.apijsonsearch.service.JsonService;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ public class JsonController {
     }
 
     @GetMapping("/registro/{busqueda}")
-    public List<JsonDoc> buscar(@PathVariable String busqueda) {
+    public List<Document> buscar(@PathVariable String busqueda) {
         return jsonService.searchJsonDocuments(busqueda);
     }
 }

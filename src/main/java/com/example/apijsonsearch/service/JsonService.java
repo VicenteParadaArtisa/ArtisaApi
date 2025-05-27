@@ -1,6 +1,7 @@
 package com.example.apijsonsearch.service;
 
-import com.example.apijsonsearch.model.JsonDoc;
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -19,9 +20,9 @@ public class JsonService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public List<JsonDoc> searchJsonDocuments(String keyword) {
+    public List<Document> searchJsonDocuments(String keyword) {
         Query query = new Query();
-        query.addCriteria(Criteria.where("$**").regex(keyword, "i"));
-        return mongoTemplate.find(query, JsonDoc.class);
+        query.addCriteria(Criteria.where("$**").regex(keyword, "i")); // Búsqueda en cualquier campo anidado
+        return mongoTemplate.find(query, Document.class, "nombre_de_la_coleccion"); // ← Cambiá este nombre
     }
 }
