@@ -9,9 +9,19 @@ import java.util.List;
 
 @Repository
 public interface WebcubeRepository extends MongoRepository<Webcube, String> {
-    List<Webcube> findByDominio(String dominio);
-    List<Webcube> findByMarca(String marca);
-    List<Webcube> findByCiudad(String ciudad);
+
+    // Dominio está dentro de equipo
+    List<Webcube> findByEquipo_Dominio(String dominio);
+
+    // Marca está dentro de equipo
+    List<Webcube> findByEquipo_Marca(String marca);
+
+    // Ciudad está dentro de ubicacion
+    List<Webcube> findByUbicacion_City(String ciudad);
+
+    // Velocidad está dentro de equipo
+    List<Webcube> findByEquipo_VelocidadGreaterThan(int velocidad);
+
+    // Date está en el nivel raíz
     List<Webcube> findByDateBetween(Date desde, Date hasta);
-    List<Webcube> findByVelocidadGreaterThan(int velocidad);
 }
