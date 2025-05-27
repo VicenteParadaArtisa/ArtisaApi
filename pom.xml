@@ -57,12 +57,6 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!-- Seguridad básica (puedes extender con JWT, OAuth, etc.) -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>
-
         <!-- Test unitarios y de integración -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
