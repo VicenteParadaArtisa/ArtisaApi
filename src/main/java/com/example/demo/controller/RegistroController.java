@@ -1,31 +1,34 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Registro;
-import com.example.demo.service.RegistroService;
+import com.example.demo.repository.RegistroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/registros")
 public class RegistroController {
 
     @Autowired
-    private RegistroService registroService;
+    private RegistroRepository registroRepository;
 
     @GetMapping
     public List<Registro> obtenerTodos() {
-        return registroService.obtenerTodosLosRegistros();
+        return registroRepository.findAll();
     }
 
     @GetMapping("/{dominio}")
     public List<Registro> obtenerPorDominio(@PathVariable String dominio) {
-        return registroService.obtenerRegistrosPorDominio(dominio);
+        return registroRepository.findAll().stream()
+                .filter(reg -> reg.getEquipo() != null && dominio.equalsIgnoreCase(reg.getEquipo().getDominio()))
+                .collect(Collectors.toList());
     }
 
     @PostMapping
     public Registro guardar(@RequestBody Registro registro) {
-        return registroService.guardarRegistro(registro);
+        return registroRepository.save(registro);
     }
 }
