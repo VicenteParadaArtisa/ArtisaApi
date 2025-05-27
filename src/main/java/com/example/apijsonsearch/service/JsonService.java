@@ -4,8 +4,9 @@ import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,8 +22,10 @@ public class JsonService {
     }
 
     public List<Document> searchJsonDocuments(String keyword) {
-        Query query = new Query();
-        query.addCriteria(Criteria.where("$**").regex(keyword, "i")); // Búsqueda en cualquier campo anidado
-        return mongoTemplate.find(query, Document.class, "nombre_de_la_coleccion"); // ← Cambiá este nombre
+        // Crea criterio de texto (asegúrate de tener el índice de texto creado en MongoDB)
+        TextCriteria textCriteria = TextCriteria.forDefaultLanguage().matching(keyword);
+        Query query = TextQuery.queryText(textCriteria);
+
+        return mongoTemplate.find(query, Document.class, "nombre_de_la_coleccion");
     }
 }
