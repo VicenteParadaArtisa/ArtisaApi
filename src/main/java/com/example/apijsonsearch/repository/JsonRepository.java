@@ -1,6 +1,6 @@
 package com.example.apijsonsearch.repository;
 
-import org.bson.Document;
+import com.example.apijsonsearch.model.JsonDoc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -17,8 +17,8 @@ public class JsonRepository {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public Document buscarPorCampo(String campo, String valor) {
+    public JsonDoc buscarPorCampo(String campo, String valor) {
         Query query = new Query(Criteria.where(campo).is(valor));
-        return mongoTemplate.findOne(query, Document.class, "jsondoc");
+        return mongoTemplate.findOne(query, JsonDoc.class, "jsondoc");
     }
 }

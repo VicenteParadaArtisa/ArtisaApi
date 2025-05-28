@@ -3,15 +3,17 @@ package com.example.apijsonsearch.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Map;
+import java.time.Instant;
 
-@Document(collection = "tu_coleccion")  // Cambiá "tu_coleccion" por el nombre real en MongoDB
+@Document(collection = "jsondoc")  // Asegurate que coincide con el nombre de tu colección
 public class JsonDoc {
 
     @Id
     private String id;
-
-    private Map<String, Object> data;  // captura todo el documento como JSON genérico
+    private Instant date;
+    private Ubicacion ubicacion;
+    private Equipo equipo;
+    private DatosDiarios datosDiarios;
 
     // Getters y Setters
 
@@ -23,11 +25,35 @@ public class JsonDoc {
         this.id = id;
     }
 
-    public Map<String, Object> getData() {
-        return data;
+    public Instant getDate() {
+        return date;
     }
 
-    public void setData(Map<String, Object> data) {
-        this.data = data;
+    public void setDate(Instant date) {
+        this.date = date;
+    }
+
+    public Ubicacion getUbicacion() {
+        return ubicacion;
+    }
+
+    public void setUbicacion(Ubicacion ubicacion) {
+        this.ubicacion = ubicacion;
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    public DatosDiarios getDatosDiarios() {
+        return datosDiarios;
+    }
+
+    public void setDatosDiarios(DatosDiarios datosDiarios) {
+        this.datosDiarios = datosDiarios;
     }
 }

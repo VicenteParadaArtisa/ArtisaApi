@@ -1,8 +1,7 @@
 package com.example.apijsonsearch.controller;
 
+import com.example.apijsonsearch.model.JsonDoc;
 import com.example.apijsonsearch.service.JsonService;
-
-import org.bson.Document;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,17 +11,17 @@ import java.util.Map;
 @RequestMapping("/api/equipo")
 public class EquipoController {
 
-    private final JsonService equipoService;
+    private final JsonService jsonService;
 
-    public EquipoController(JsonService equipoService) {
-        this.equipoService = equipoService;
+    public EquipoController(JsonService jsonService) {
+        this.jsonService = jsonService;
     }
 
     // Endpoint: /api/equipo/dominio/{dominio}
     @GetMapping("/dominio/{dominio}")
     public ResponseEntity<?> buscarPorDominio(@PathVariable String dominio) {
         try {
-            Document resultado = equipoService.buscarPorCampo("equipo.dominio", dominio);
+            JsonDoc resultado = jsonService.buscarPorCampo("equipo.dominio", dominio);
             if (resultado == null) {
                 return ResponseEntity.status(404).body(Map.of("error", "No se encontró el dominio: " + dominio));
             }
@@ -33,15 +32,14 @@ public class EquipoController {
                 "message", e.getMessage()
             ));
         }
-
     }
 
     // Endpoint: /api/equipo/lastEvent/{campo}/{valor}
     @GetMapping("/lastEvent/{campo}/{valor}")
     public ResponseEntity<?> buscarPorLastEvent(@PathVariable String campo, @PathVariable String valor) {
         try {
-            String path = "datosDiarios.lastEvent." + campo;
-            Document resultado = equipoService.buscarPorCampo(path, valor);
+            String path = "equipo.lastEvent." + campo; // Ojo: puede que solo necesites "equipo.lastEvent" directo
+            JsonDoc resultado = jsonService.buscarPorCampo("equipo.lastEvent." + campo, valor);
             if (resultado == null) {
                 return ResponseEntity.status(404).body(Map.of("error", "No se encontró ningún documento con ese valor en lastEvent"));
             }
