@@ -1,5 +1,6 @@
 package com.example.apijsonsearch.service;
 
+import com.example.apijsonsearch.exception.ResourceNotFoundException;
 import com.example.apijsonsearch.model.JsonDoc;
 import com.example.apijsonsearch.repository.JsonRepository;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,12 @@ public class JsonService {
     }
 
     public List<JsonDoc> buscarPorDato(String dato) {
-        return jsonRepository.buscarPorDato(dato);
+        List<JsonDoc> resultados = jsonRepository.buscarPorDato(dato);
+
+        if (resultados == null || resultados.isEmpty()) {
+            throw new ResourceNotFoundException("No se encontraron documentos que contengan: " + dato);
+        }
+
+        return resultados;
     }
 }
