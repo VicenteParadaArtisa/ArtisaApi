@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perfil del Camión</title>
   <style>
     body {
@@ -26,6 +27,7 @@
     img {
       width: 100%;
       border-radius: 10px;
+      margin-bottom: 1rem;
     }
 
     .info {
@@ -35,6 +37,19 @@
     .info p {
       margin: 8px 0;
       font-size: 15px;
+    }
+
+    .volver {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #004076;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    .volver:hover {
+      background-color: #0055aa;
     }
   </style>
 </head>
@@ -50,7 +65,7 @@
       const cont = document.getElementById('camion-container');
       cont.innerHTML = `
         <h1>${info.dominio}</h1>
-        <img src="${info.image}" alt="Camión">
+        <img src="${info.image}" alt="Imagen del camión ${info.dominio}" />
         <div class="info">
           <h2>${info.nombre}</h2>
           <p><strong>Marca:</strong> ${info.marca}</p>
@@ -70,6 +85,7 @@
           <p><strong>Huella de Carbono:</strong> ${info.huellaCarb} tCO2</p>
           <p><strong>Calificación:</strong> ${info.calific} pts</p>
         </div>
+        <a href="index.html" class="volver" role="button" aria-label="Volver al listado de patentes">Volver al listado</a>
       `;
     }
 
@@ -101,17 +117,10 @@
           numChasis: data.equipo.numChasis,
           numFreMot: data.equipo.numFreMot,
           notas: data.equipo.notas,
-          tiempoTotal: data.datosDiarios.tiempoTotal,
-          tiempoConduc: data.datosDiarios.tiempoConduc,
-          tiempoDeten: data.datosDiarios.tiempoDeten,
-          tiempoRalent: data.datosDiarios.tiempoRalent,
           distancia: data.datosDiarios.distancia,
           consumo: data.datosDiarios.consumo,
           huellaCarb: data.datosDiarios.huellaCarb,
           rendimiento: data.datosDiarios.rendimiento,
-          ExcesRPM: data.datosDiarios.ExcesRPM,
-          FrenoMotor: data.datosDiarios.FrenoMotor,
-          ralenti: data.datosDiarios.ralenti,
           calific: data.datosDiarios.calific
         };
 

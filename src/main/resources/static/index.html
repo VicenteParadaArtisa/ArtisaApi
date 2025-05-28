@@ -12,6 +12,7 @@
     }
     h1 {
       color: #0044cc;
+      margin-bottom: 1rem;
     }
     input[type="text"] {
       padding: 0.6rem;
@@ -96,7 +97,6 @@
       .then(response => response.json())
       .then(data => {
         patentes = data;
-        // Mostrar todas las patentes inicialmente
         patentes.forEach(patente => crearElemento(patente, listadoCompleto));
       });
 
