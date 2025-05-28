@@ -4,8 +4,10 @@ import com.example.apijsonsearch.model.JsonDoc;
 import com.example.apijsonsearch.service.JsonService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.example.apijsonsearch.model.Equipo;
 
 import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/equipo")
@@ -51,4 +53,19 @@ public class EquipoController {
             ));
         }
     }
+
+    @GetMapping("/dominio/disponibles")
+    public ResponseEntity<?> obtenerDominiosDisponibles() {
+        try {
+            List<Equipo> equipos = jsonService.obtenerEquiposDisponibles();
+            return ResponseEntity.ok(equipos);
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(Map.of(
+                    "error", "Error al obtener equipos",
+                    "message", e.getMessage()
+            ));
+        }
+    }
+    
+
 }

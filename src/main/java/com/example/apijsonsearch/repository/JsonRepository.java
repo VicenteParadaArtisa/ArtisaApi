@@ -6,6 +6,13 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
+import com.example.apijsonsearch.model.Equipo;
+
+
+import java.util.stream.Collectors;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.List;
 
 @Repository
 public class JsonRepository {
@@ -37,4 +44,26 @@ public class JsonRepository {
     public JsonDoc buscarPorDominio(String dominio) {
         return buscarPorCampo("equipo.dominio", dominio);
     }
+
+    public List<Equipo> obtenerEquiposUnicosOrdenados() {
+        List<JsonDoc> documentos = mongoTemplate.findAll(JsonDoc.class, "Jsons");
+    
+        return documentos.stream()
+                .map(JsonDoc::getEquipo)
+                .filter(Objects::nonNull)
+                .collect(Collectors.collectingAndThen(
+                    Collectors.toMap(
+                        Equipo::getDominio, // clave única
+                        e -> e,              // objeto Equipo
+                        (e1, e2) -> e1       // en caso de duplicado
+                    ),
+                    map -> map.values().stream()
+                            .sorted(Comparator.comparing(Equipo::getDominio))
+                            .collect(Collectors.toList())
+                ));
+    }
+    
+
+
+
 }

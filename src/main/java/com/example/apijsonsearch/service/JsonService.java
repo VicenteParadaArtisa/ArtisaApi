@@ -4,6 +4,9 @@ import com.example.apijsonsearch.model.JsonDoc;
 import com.example.apijsonsearch.repository.JsonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.example.apijsonsearch.model.Equipo;
+
+import java.util.List;
 
 @Service
 public class JsonService {
@@ -28,4 +31,9 @@ public class JsonService {
     public JsonDoc buscarPorCampo(String campo, String valor) {
         return jsonRepository.buscarPorCampo(campo, valor);
     }
+
+    public List<Equipo> obtenerEquiposDisponibles() {
+        return jsonRepository.obtenerEquiposUnicosOrdenados();
+    }
+    
 }
