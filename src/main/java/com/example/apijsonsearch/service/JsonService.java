@@ -17,12 +17,10 @@ public class JsonService {
     }
 
     public List<JsonDoc> buscarPorDato(String dato) {
-        List<JsonDoc> resultados = jsonRepository.buscarPorDato(dato);
-
-        if (resultados == null || resultados.isEmpty()) {
-            throw new ResourceNotFoundException("No se encontraron documentos que contengan: " + dato);
+        try {
+            return jsonRepository.buscarPorDato(dato);
+        } catch (Exception e) {
+            throw new RuntimeException("Error al buscar en MongoDB: " + e.getMessage(), e);
         }
-
-        return resultados;
     }
 }
