@@ -1,36 +1,33 @@
 package com.example.apijsonsearch.model;
 
-import org.bson.Document;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-// Usamos el nombre completo de la anotación para evitar conflicto
-@org.springframework.data.mongodb.core.mapping.Document(collection = "Jsons")
+import java.util.Map;
+
+@Document(collection = "tu_coleccion")  // Cambiá "tu_coleccion" por el nombre real en MongoDB
 public class JsonDoc {
 
     @Id
     private String id;
 
-    private Document content;
+    private Map<String, Object> data;  // captura todo el documento como JSON genérico
 
-    public JsonDoc() {}
-
-    public JsonDoc(Document content) {
-        this.content = content;
-    }
+    // Getters y Setters
 
     public String getId() {
         return id;
     }
 
-    public Document getContent() {
-        return content;
-    }
-
-    public void setContent(Document content) {
-        this.content = content;
-    }
-
     public void setId(String id) {
         this.id = id;
+    }
+
+    public Map<String, Object> getData() {
+        return data;
+    }
+
+    public void setData(Map<String, Object> data) {
+        this.data = data;
     }
 }
