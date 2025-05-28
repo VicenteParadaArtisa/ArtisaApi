@@ -55,17 +55,17 @@ public class EquipoController {
     }
 
     @GetMapping("/dominio/disponibles")
-    public ResponseEntity<?> obtenerDominiosDisponibles() {
-        try {
-            List<Equipo> equipos = jsonService.obtenerEquiposDisponibles();
-            return ResponseEntity.ok(equipos);
-        } catch (Exception e) {
-            return ResponseEntity.status(500).body(Map.of(
-                    "error", "Error al obtener equipos",
-                    "message", e.getMessage()
-            ));
-        }
+        public ResponseEntity<?> obtenerDominiosDisponibles() {
+    try {
+        List<String> dominios = jsonService.obtenerDominiosDisponibles();
+        return ResponseEntity.ok(dominios);
+    } catch (Exception e) {
+        return ResponseEntity.status(500).body(Map.of(
+            "error", "Error al obtener dominios",
+            "message", e.getMessage()
+        ));
     }
-    
+}
+
 
 }
