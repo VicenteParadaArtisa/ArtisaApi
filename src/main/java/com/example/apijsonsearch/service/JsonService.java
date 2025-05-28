@@ -1,5 +1,5 @@
 package com.example.apijsonsearch.service;
-
+import com.example.apijsonsearch.repository.JsonRepository;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,16 +11,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class JsonService {
 
-    private final MongoTemplate mongoTemplate;
+    private final JsonRepository jsonRepository;
 
     @Autowired
-    public JsonService(MongoTemplate mongoTemplate) {
-        this.mongoTemplate = mongoTemplate;
+    public JsonService(JsonRepository jsonRepository) {
+        this.jsonRepository = jsonRepository;
     }
 
     public Document buscarPorCampo(String campo, String valor) {
-        Query query = new Query(Criteria.where(campo).is(valor));
-        return mongoTemplate.findOne(query, Document.class, "jsons");
+        return jsonRepository.buscarPorCampo(campo, valor);
     }
-    
 }
