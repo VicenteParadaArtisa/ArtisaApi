@@ -15,6 +15,16 @@ public class JsonService {
         this.jsonRepository = jsonRepository;
     }
 
+    /**
+     * Búsqueda específica por dominio (equipo.dominio)
+     */
+    public JsonDoc buscarPorDominio(String dominio) {
+        return jsonRepository.buscarPorDominio(dominio);
+    }
+
+    /**
+     * Búsqueda genérica por cualquier campo (puede ser anidado)
+     */
     public JsonDoc buscarPorCampo(String campo, String valor) {
         return jsonRepository.buscarPorCampo(campo, valor);
     }

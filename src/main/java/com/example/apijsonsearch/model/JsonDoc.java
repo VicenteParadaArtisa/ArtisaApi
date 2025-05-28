@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.Instant;
 
-@Document(collection = "jsondoc")  // Asegurate que coincide con el nombre de tu colección
+@Document(collection = "Jsons")  // Asegurate que coincide con el nombre de tu colección
 public class JsonDoc {
 
     @Id
