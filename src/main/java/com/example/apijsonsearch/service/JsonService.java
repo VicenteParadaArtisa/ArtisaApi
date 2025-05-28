@@ -20,6 +20,7 @@ public class JsonService {
 
     public Document buscarPorCampo(String campo, String valor) {
         Query query = new Query(Criteria.where(campo).is(valor));
-        return mongoTemplate.findOne(query, Document.class, "jsondoc");
+        return mongoTemplate.findOne(query, Document.class, "jsons");
     }
+    
 }

@@ -22,7 +22,7 @@ public class EquipoController {
     @GetMapping("/dominio/{dominio}")
     public ResponseEntity<?> buscarPorDominio(@PathVariable String dominio) {
         try {
-            Document resultado = equipoService.buscarPorCampo("dominio", dominio);
+            Document resultado = equipoService.buscarPorCampo("equipo.dominio", dominio);
             if (resultado == null) {
                 return ResponseEntity.status(404).body(Map.of("error", "No se encontró el dominio: " + dominio));
             }
@@ -33,6 +33,7 @@ public class EquipoController {
                 "message", e.getMessage()
             ));
         }
+
     }
 
     // Endpoint: /api/equipo/lastEvent/{campo}/{valor}
