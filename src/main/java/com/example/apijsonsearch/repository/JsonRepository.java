@@ -19,6 +19,6 @@ public class JsonRepository {
 
     public JsonDoc buscarPorCampo(String campo, String valor) {
         Query query = new Query(Criteria.where(campo).is(valor));
-        return mongoTemplate.findOne(query, JsonDoc.class, "jsondoc");
+        return mongoTemplate.findOne(query, JsonDoc.class, "Jsons"); // CORREGIDO: nombre exacto de la colección
     }
 }
