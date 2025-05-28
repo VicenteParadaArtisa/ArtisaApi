@@ -1,26 +1,25 @@
 package com.example.apijsonsearch.service;
 
-import com.example.apijsonsearch.exception.ResourceNotFoundException;
-import com.example.apijsonsearch.model.JsonDoc;
-import com.example.apijsonsearch.repository.JsonRepository;
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class JsonService {
 
-    private final JsonRepository jsonRepository;
+    private final MongoTemplate mongoTemplate;
 
-    public JsonService(JsonRepository jsonRepository) {
-        this.jsonRepository = jsonRepository;
+    @Autowired
+    public JsonService(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
     }
 
-    public List<JsonDoc> buscarPorDato(String dato) {
-        try {
-            return jsonRepository.buscarPorDato(dato);
-        } catch (Exception e) {
-            throw new RuntimeException("Error al buscar en MongoDB: " + e.getMessage(), e);
-        }
+    public Document buscarPorCampo(String campo, String valor) {
+        Query query = new Query(Criteria.where(campo).is(valor));
+        return mongoTemplate.findOne(query, Document.class, "jsondoc");
     }
 }

@@ -32,7 +32,7 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- MongoDB y MongoTemplate -->
+        <!-- MongoDB + MongoTemplate -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
@@ -57,7 +57,7 @@
             <version>2.3.0</version>
         </dependency>
 
-        <!-- Clases utilitarias estándar de Java (Map, HashMap, Instant) -->
+        <!-- Utilidades comunes de Apache -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -82,7 +82,7 @@
 
     <build>
         <plugins>
-            <!-- Plugin para compilar y empaquetar -->
+            <!-- Plugin Spring Boot -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
