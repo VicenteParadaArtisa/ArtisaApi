@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Listado de Patentes</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #004076;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    li {
+      background: white;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    a {
+      text-decoration: none;
+      color: #004076;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Listado de Patentes</h1>
+  <ul id="lista-patentes">Cargando...</ul>
+
+  <script>
+    fetch('https://artisaapi.onrender.com/api/equipo/dominio/disponibles')
+      .then(response => response.json())
+      .then(data => {
+        const lista = document.getElementById('lista-patentes');
+        lista.innerHTML = '';
+        data.forEach(patente => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="perfil_camion.html?dominio=${encodeURIComponent(patente)}">${patente}</a>`;
+          lista.appendChild(li);
+        });
+      })
+      .catch(error => {
+        document.getElementById('lista-patentes').textContent = 'Error al cargar las patentes.';
+        console.error(error);
+      });
+  </script>
+</body>
+</html>
