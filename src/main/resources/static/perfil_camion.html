@@ -168,7 +168,10 @@
 
   <main class="main">
     <!-- Page Title -->
-    <div class="page-title dark-background" data-aos="fade" style="background-image: url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+    <div class="page-title dark-background" data-aos="fade" 
+     style="background-image: url('assets/img/page-title-bg.jpg');
+            background-size: cover;
+            background-position: center;">
       <div class="container position-relative">
         <h1 id="equipo-titulo">Perfil del Camión</h1>
         <p id="equipo-subtitulo">Detalles completos del equipo</p>
@@ -475,9 +478,6 @@
         const lng = equipoData.ubicacion.longitude1;
         const mapUrl = `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
         document.getElementById('map-frame').src = mapUrl;
-        
-        // Actualizar imagen (podrías tener imágenes específicas por dominio)
-        document.getElementById('camion-image').src = `https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80`;
         
         // Inicializar animaciones (si es necesario)
         if (window.AOS) {
