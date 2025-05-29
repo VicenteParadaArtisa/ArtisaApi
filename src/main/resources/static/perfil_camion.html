@@ -117,6 +117,11 @@
       max-height: 180px;
       object-fit: cover;
       border-radius: 8px;
+      width: 100%;
+    }
+    .page-title {
+      background-size: cover;
+      background-position: center;
     }
   </style>
 </head>
@@ -169,9 +174,7 @@
   <main class="main">
     <!-- Page Title -->
     <div class="page-title dark-background" data-aos="fade" 
-     style="background-image: url('assets/img/page-title-bg.jpg');
-            background-size: cover;
-            background-position: center;">
+     style="background-image: url('assets/img/page-title-bg.jpg');">
       <div class="container position-relative">
         <h1 id="equipo-titulo">Perfil del Camión</h1>
         <p id="equipo-subtitulo">Detalles completos del equipo</p>
@@ -231,7 +234,7 @@
                   </div>
                 </div>
                 <div class="col-md-4 text-center">
-                  <img id="camion-image" src="https://unsplash.com/es/fotos/un-camion-grande-en-la-carretera-N5EPfCrEuy8" alt="Imagen del camión" class="img-fluid camion-img">
+                  <img id="camion-image" alt="Imagen del camión" class="img-fluid camion-img">
                 </div>
               </div>
             </div>
@@ -478,6 +481,25 @@
         const lng = equipoData.ubicacion.longitude1;
         const mapUrl = `https://maps.google.com/maps?q=${lat},${lng}&z=15&output=embed`;
         document.getElementById('map-frame').src = mapUrl;
+        
+        // Actualizar imagen basada en el modelo
+        const modelo = equipoData.equipo.modelo;
+        const imgElement = document.getElementById('camion-image');
+        
+        // Intentar cargar la imagen específica del modelo
+        const modelImg = new Image();
+        modelImg.src = `assets/img/equipos/${modelo}.jpg`;
+        
+        modelImg.onload = function() {
+          imgElement.src = modelImg.src;
+          imgElement.alt = `Imagen del modelo ${modelo}`;
+        };
+        
+        modelImg.onerror = function() {
+          // Si no se encuentra la imagen específica, usar una imagen por defecto
+          imgElement.src = 'assets/img/equipos/default.jpg';
+          imgElement.alt = 'Imagen de camión genérica';
+        };
         
         // Inicializar animaciones (si es necesario)
         if (window.AOS) {
