@@ -1,106 +1,242 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Listado de Patentes</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      padding: 2rem;
-    }
-    h1 {
-      color: #0044cc;
-      margin-bottom: 1rem;
-    }
-    input[type="text"] {
-      padding: 0.6rem;
-      font-size: 1rem;
-      width: 100%;
-      max-width: 600px;
-      margin-bottom: 1rem;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      background: white;
-      margin-bottom: 0.5rem;
-      padding: 0.75rem 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    li:hover {
-      background-color: #e6f0ff;
-    }
-    .highlight {
-      background-color: #d9f2d9 !important;
-      border-left: 5px solid green;
-    }
-    .section-title {
-      margin-top: 2rem;
-      color: #333;
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Buscador Equipos</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
 </head>
-<body>
-  <main>
-    <h1>Listado de Patentes</h1>
 
-    <label for="buscador">Buscar patente:</label>
-    <input type="text" id="buscador" aria-label="Buscar patente" placeholder="Escriba aquí..." />
+<body class="index-page">
 
-    <section aria-live="polite">
-      <h2 class="section-title">Resultados filtrados</h2>
-      <ul id="resultadosFiltrados"></ul>
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">ARTISA</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li class="dropdown"><a href="index.html"><span>Buscador</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="index.html">Vehiculos</a></li>
+              <li><a href="#">Viajes</a></li>
+              <li><a href="#">Conductores</a></li>
+            </ul>
+          <li><a href="https://systemartisa.cl/">Sistema Artisa</a></li>
+          <li class="dropdown"><a href="#"><span>Calama</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Eficiencia Energetica</a></li>
+              <li><a href="#">Mantenimiento</a></li>
+              <li><a href="#">Prevención</a></li>
+              <li><a href="#">GPS</a></li>
+              <li><a href="#">Excesos</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Lampa</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Eficiencia Energetica</a></li>
+              <li><a href="#">Mantenimiento</a></li>
+              <li><a href="#">Prevención</a></li>
+              <li><a href="#">GPS</a></li>
+              <li><a href="#">Excesos</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Developer</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a><ul>
+              <li><a href="#">Documentacion</a></li>
+              <li><a href="#">Api</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+      <img src="assets/img/world-dotted-map.png" alt="" class="hero-bg" data-aos="fade-in">
+      <div class="container">
+        <div class="row gy-4 d-flex justify-content-between">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h2 data-aos="fade-up">Buscador de Equipos</h2>
+            <p data-aos="fade-up" data-aos-delay="100">Inserte la patente sin guión: "TWPY63"</p>
+
+            <form class="form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200" onsubmit="buscarEquipo(event)">
+              <input type="text" id="dominioInput" class="form-control" placeholder="Ingresa el dominio (ej: TWPY63)">
+              <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+
+            <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
+              <div class="col-lg-3 col-6">
+                <div class="stats-item text-center w-100 h-100">
+                  <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="0" class="purecounter">232</span>
+                  <p>Equipos</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section>
-      <h2 class="section-title">Todas las patentes</h2>
-      <ul id="listadoCompleto"></ul>
+    <!-- Services Section -->
+    <section id="services" class="services section">
+      <div class="container section-title" data-aos="fade-up">
+        <span>Equipos<br></span>
+        <h2>Equipos</h2>
+        <p>Listado General</p>
+      </div>
+      <div class="container">
+        <div class="row gy-4" id="equipos-container">
+          <!-- Las cards de equipos se generarán aquí dinámicamente -->
+        </div>
+      </div>
     </section>
+
   </main>
 
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="#">Buscador</a></li>
+            <li><a href="#">Sistema Artisa</a></li>
+            <li><a href="#">Calama</a></li>
+            <li><a href="#">Lampa</a></li>
+            <li><a href="#">Developer</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Soporte Area Ti</h4>
+          <p>Vicente Parada</p>
+          <p class="mt-4"><strong>Telefono:</strong> <span>+56 9 3118 8748</span></p>
+          <p><strong>Email:</strong> <span>vparada@transportesartisa.cl</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Transportes Artisa</strong> <span></span></p>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Script para conectar con el backend -->
   <script>
-    const API_URL = "/api/equipo/dominio/disponibles";
+    async function buscarEquipo(event) {
+      event.preventDefault();
+      const dominio = document.getElementById("dominioInput").value.trim();
+      
+      if (!dominio) {
+        alert("Por favor, ingresa un dominio válido.");
+        return;
+      }
 
-    const buscador = document.getElementById("buscador");
-    const resultadosFiltrados = document.getElementById("resultadosFiltrados");
-    const listadoCompleto = document.getElementById("listadoCompleto");
+      try {
+        const response = await fetch(`https://artisaapi.onrender.com/api/equipo/dominio/${dominio}`);
+        const equipo = await response.json();
 
-    let patentes = [];
-
-    function crearElemento(patente, contenedor, extraClass = "") {
-      const li = document.createElement("li");
-      li.textContent = patente;
-      li.tabIndex = 0;
-      li.className = extraClass;
-      li.setAttribute("role", "link");
-      li.setAttribute("aria-label", `Ver perfil de la patente ${patente}`);
-      li.onclick = () => {
-        window.location.href = `perfil_camion.html?dominio=${encodeURIComponent(patente)}`;
-      };
-      contenedor.appendChild(li);
+        if (response.status === 404) {
+          alert(`Error: ${equipo.error}`);
+        } else {
+          mostrarEquipo(equipo);
+        }
+      } catch (error) {
+        console.error("Error al buscar equipo:", error);
+        alert("Error al conectar con el servidor.");
+      }
     }
 
-    function filtrarPatentes(texto) {
-      resultadosFiltrados.innerHTML = "";
-      const filtro = texto.toLowerCase();
-      const coincidencias = patentes.filter(p => p.toLowerCase().includes(filtro));
-      coincidencias.forEach(patente => crearElemento(patente, resultadosFiltrados, "highlight"));
+    function mostrarEquipo(equipo) {
+      const container = document.getElementById("equipos-container");
+      container.innerHTML = ""; // Limpiar resultados anteriores
+
+      const cardHTML = `
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="card">
+            <div class="card-img">
+              <img src="assets/img/service-1.jpg" alt="Equipo ${equipo.dominio}" class="img-fluid">
+            </div>
+            <h3>${equipo.dominio}</h3>
+            <p>${equipo.lastEvent?.tipo || "Sin información reciente"}</p>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = cardHTML;
     }
 
-    fetch(API_URL)
-      .then(response => response.json())
-      .then(data => {
-        patentes = data;
-        patentes.forEach(patente => crearElemento(patente, listadoCompleto));
-      });
+    // Opcional: Cargar todos los equipos al inicio
+    window.onload = async function() {
+      try {
+        const response = await fetch("https://artisaapi.onrender.com/api/equipo/dominio/disponibles");
+        const dominios = await response.json();
+        const container = document.getElementById("equipos-container");
+        container.innerHTML = "";
 
-    buscador.addEventListener("input", e => filtrarPatentes(e.target.value));
+        for (const dominio of dominios) {
+          const equipoResponse = await fetch(`https://artisaapi.onrender.com/api/equipo/dominio/${dominio}`);
+          const equipo = await equipoResponse.json();
+          
+          const cardHTML = `
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="card">
+                <div class="card-img">
+                  <img src="assets/img/service-1.jpg" alt="Equipo ${dominio}" class="img-fluid">
+                </div>
+                <h3>${dominio}</h3>
+                <p>${equipo.lastEvent?.tipo || "Sin datos"}</p>
+              </div>
+            </div>
+          `;
+
+          container.innerHTML += cardHTML;
+        }
+      } catch (error) {
+        console.error("Error al cargar equipos:", error);
+      }
+    };
   </script>
 </body>
 </html>
