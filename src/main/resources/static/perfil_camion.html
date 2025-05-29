@@ -1,135 +1,230 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perfil del Camión</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 30px;
-    }
+<html lang="en">
 
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: white;
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Perfil del Equipo - ARTISA</title>
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+  
+  <style>
+    .equipo-header {
+      background-color: #f8f9fa;
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
     }
-
-    h1, h2 {
-      color: #004076;
+    .equipo-card {
+      margin-bottom: 20px;
     }
-
-    img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 1rem;
-    }
-
-    .info {
+    .back-button {
       margin-top: 20px;
-    }
-
-    .info p {
-      margin: 8px 0;
-      font-size: 15px;
-    }
-
-    .volver {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 15px;
-      background-color: #004076;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    .volver:hover {
-      background-color: #0055aa;
     }
   </style>
 </head>
-<body>
 
-  <div class="container" id="camion-container">
-    <h1>Perfil del Camión</h1>
-    <p>Cargando información...</p>
-  </div>
+<body class="index-page">
+
+  <header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl position-relative d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center me-auto">
+        <h1 class="sitename">ARTISA</h1>
+      </a>
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li class="dropdown"><a href="index.html"><span>Buscador</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="index.html">Vehiculos</a></li>
+              <li><a href="#">Viajes</a></li>
+              <li><a href="#">Conductores</a></li>
+            </ul>
+          <li><a href="https://systemartisa.cl/">Sistema Artisa</a></li>
+          <li class="dropdown"><a href="#"><span>Calama</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Eficiencia Energetica</a></li>
+              <li><a href="#">Mantenimiento</a></li>
+              <li><a href="#">Prevención</a></li>
+              <li><a href="#">GPS</a></li>
+              <li><a href="#">Excesos</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Lampa</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+            <ul>
+              <li><a href="#">Eficiencia Energetica</a></li>
+              <li><a href="#">Mantenimiento</a></li>
+              <li><a href="#">Prevención</a></li>
+              <li><a href="#">GPS</a></li>
+              <li><a href="#">Excesos</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"><span>Developer</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a><ul>
+              <li><a href="#">Documentacion</a></li>
+              <li><a href="#">Api</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section dark-background">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="equipo-header" data-aos="fade-up">
+              <h2 id="equipo-titulo">Perfil del Equipo</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Detalles del Equipo -->
+    <section class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="card equipo-card" data-aos="fade-up" data-aos-delay="100">
+              <div class="card-body">
+                <div id="equipo-info">
+                  <div class="text-center">
+                    <div class="spinner-border" role="status">
+                      <span class="visually-hidden">Cargando...</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center back-button">
+              <button class="btn btn-primary" onclick="window.location.href='index.html'">
+                <i class="bi bi-arrow-left"></i> Volver al Buscador
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer" class="footer dark-background">
+    <div class="container footer-top">
+      <div class="row gy-4">
+        <div class="col-lg-2 col-6 footer-links">
+          <h4>Links</h4>
+          <ul>
+            <li><a href="index.html">Buscador</a></li>
+            <li><a href="#">Sistema Artisa</a></li>
+            <li><a href="#">Calama</a></li>
+            <li><a href="#">Lampa</a></li>
+            <li><a href="#">Developer</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+          <h4>Soporte Area Ti</h4>
+          <p>Vicente Parada</p>
+          <p class="mt-4"><strong>Telefono:</strong> <span>+56 9 3118 8748</span></p>
+          <p><strong>Email:</strong> <span>vparada@transportesartisa.cl</span></p>
+        </div>
+      </div>
+    </div>
+    <div class="container copyright text-center mt-4">
+      <p>© <span>Copyright</span> <strong class="px-1 sitename">Transportes Artisa</strong> <span></span></p>
+    </div>
+  </footer>
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Main JS File -->
+  <script src="assets/js/main.js"></script>
 
   <script>
-    function updateUI(info) {
-      const cont = document.getElementById('camion-container');
-      cont.innerHTML = `
-        <h1>${info.dominio}</h1>
-        <img src="${info.image}" alt="Imagen del camión ${info.dominio}" />
-        <div class="info">
-          <h2>${info.nombre}</h2>
-          <p><strong>Marca:</strong> ${info.marca}</p>
-          <p><strong>Modelo:</strong> ${info.modelo}</p>
-          <p><strong>Ubicación:</strong> ${info.ubicacion}</p>
-          <p><strong>Ciudad:</strong> ${info.city}</p>
-          <p><strong>Último Evento:</strong> ${info.lastEvent}</p>
-          <p><strong>Velocidad:</strong> ${info.velocidad} km/h</p>
-          <p><strong>Chasis:</strong> ${info.numChasis}</p>
-          <p><strong>Motor:</strong> ${info.numFreMot}</p>
-          <p><strong>Notas:</strong> ${info.notas}</p>
-          <hr>
-          <h2>Datos Diarios</h2>
-          <p><strong>Distancia:</strong> ${info.distancia} km</p>
-          <p><strong>Consumo:</strong> ${info.consumo} lts</p>
-          <p><strong>Rendimiento:</strong> ${info.rendimiento} km/lt</p>
-          <p><strong>Huella de Carbono:</strong> ${info.huellaCarb} tCO2</p>
-          <p><strong>Calificación:</strong> ${info.calific} pts</p>
-        </div>
-        <a href="index.html" class="volver" role="button" aria-label="Volver al listado de patentes">Volver al listado</a>
-      `;
-    }
-
-    document.addEventListener('DOMContentLoaded', async () => {
+    document.addEventListener('DOMContentLoaded', async function() {
       const params = new URLSearchParams(window.location.search);
       const dominio = params.get('dominio');
-
+      
       if (!dominio) {
-        alert('No se especificó una patente.');
+        window.location.href = 'index.html';
         return;
       }
 
+      // Actualizar el título
+      document.getElementById('equipo-titulo').textContent = `Equipo ${dominio}`;
+      
       try {
         const response = await fetch(`https://artisaapi.onrender.com/api/equipo/dominio/${dominio}`);
-        if (!response.ok) throw new Error('No encontrado');
-
-        const data = await response.json();
-
-        const info = {
-          dominio: data.equipo.dominio,
-          nombre: data.equipo.nombre,
-          marca: data.equipo.marca,
-          modelo: data.equipo.modelo,
-          image: 'https://www.scania.com/content/dam/scanianoe/market/master/products/trucks/r-series/scania-r-500-6x4-nae/image-thumb__36279__header-product/scania-r-500-6x4-nae-header-product-890x501.jpg',
-          lastEvent: data.equipo.lastEvent,
-          velocidad: data.equipo.velocidad ?? "--",
-          ubicacion: data.ubicacion.ubicacion_descripcion ?? "--",
-          city: data.ubicacion.city ?? "--",
-          numChasis: data.equipo.numChasis,
-          numFreMot: data.equipo.numFreMot,
-          notas: data.equipo.notas,
-          distancia: data.datosDiarios.distancia,
-          consumo: data.datosDiarios.consumo,
-          huellaCarb: data.datosDiarios.huellaCarb,
-          rendimiento: data.datosDiarios.rendimiento,
-          calific: data.datosDiarios.calific
-        };
-
-        updateUI(info);
-      } catch (err) {
-        alert('Error al cargar el vehículo.');
-        console.error(err);
+        if (!response.ok) {
+          throw new Error('No se pudo cargar la información del equipo');
+        }
+        
+        const equipo = await response.json();
+        mostrarInformacionEquipo(equipo);
+      } catch (error) {
+        document.getElementById('equipo-info').innerHTML = `
+          <div class="alert alert-danger">
+            ${error.message || 'Error al cargar los datos del equipo'}
+          </div>
+        `;
       }
     });
+
+    function mostrarInformacionEquipo(equipo) {
+      const container = document.getElementById('equipo-info');
+      container.innerHTML = `
+        <h3>${equipo.dominio}</h3>
+        <p><strong>Último evento:</strong> ${equipo.lastEvent?.tipo || 'Sin información'}</p>
+        <div class="mt-4">
+          <h4>Detalles del equipo</h4>
+          <ul class="list-group">
+            <li class="list-group-item"><strong>Modelo:</strong> ${equipo.modelo || 'No disponible'}</li>
+            <li class="list-group-item"><strong>Año:</strong> ${equipo.anio || 'No disponible'}</li>
+            <li class="list-group-item"><strong>Estado:</strong> ${equipo.estado || 'No disponible'}</li>
+          </ul>
+        </div>
+        <div class="mt-4">
+          <h4>Última ubicación</h4>
+          <p><strong>Fecha:</strong> ${equipo.lastEvent?.fecha || 'No disponible'}</p>
+          <p><strong>Ubicación:</strong> ${equipo.lastEvent?.ubicacion || 'No disponible'}</p>
+        </div>
+      `;
+    }
   </script>
 </body>
 </html>

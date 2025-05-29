@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Buscador Equipos</title>
+  <title>Buscador Equipos - ARTISA</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -27,6 +27,35 @@
 
   <!-- Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
+  
+  <style>
+    .clickable-card {
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .clickable-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .patente-item {
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-align: center;
+      padding: 15px;
+      margin: 10px 0;
+      border-radius: 8px;
+      background-color: #f8f9fa;
+      transition: background-color 0.3s;
+    }
+    .patente-item:hover {
+      background-color: #e9ecef;
+    }
+    .spinner-container {
+      display: flex;
+      justify-content: center;
+      padding: 20px;
+    }
+  </style>
 </head>
 
 <body class="index-page">
@@ -93,7 +122,7 @@
             <div class="row gy-4" data-aos="fade-up" data-aos-delay="300">
               <div class="col-lg-3 col-6">
                 <div class="stats-item text-center w-100 h-100">
-                  <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="0" class="purecounter">232</span>
+                  <span id="total-equipos" data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="0" class="purecounter">0</span>
                   <p>Equipos</p>
                 </div>
               </div>
@@ -112,7 +141,11 @@
       </div>
       <div class="container">
         <div class="row gy-4" id="equipos-container">
-          <!-- Las cards de equipos se generarán aquí dinámicamente -->
+          <div class="col-12 spinner-container">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Cargando...</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -164,79 +197,84 @@
 
   <!-- Script para conectar con el backend -->
   <script>
+    // Función para cargar el conteo de equipos
+    async function cargarConteoEquipos() {
+      try {
+        const response = await fetch('https://artisaapi.onrender.com/api/equipo/dominio/disponibles');
+        const dominios = await response.json();
+        const total = dominios.length;
+        document.getElementById('total-equipos').textContent = total;
+        document.getElementById('total-equipos').setAttribute('data-purecounter-end', total);
+        return dominios;
+      } catch (error) {
+        console.error("Error al cargar conteo:", error);
+        return [];
+      }
+    }
+
+    // Función para mostrar todos los equipos
+    async function mostrarTodosEquipos() {
+      const container = document.getElementById('equipos-container');
+      
+      try {
+        const dominios = await cargarConteoEquipos();
+        container.innerHTML = '';
+        
+        if (dominios.length === 0) {
+          container.innerHTML = '<div class="col-12 text-center"><p>No se encontraron equipos</p></div>';
+          return;
+        }
+        
+        dominios.forEach(dominio => {
+          const cardHTML = `
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <div class="card h-100 clickable-card" onclick="redirigirAPerfil('${dominio}')">
+                <div class="card-body text-center">
+                  <h3 class="card-title">${dominio}</h3>
+                  <p class="card-text">Sin datos</p>
+                </div>
+              </div>
+            </div>`;
+          container.innerHTML += cardHTML;
+        });
+      } catch (error) {
+        container.innerHTML = '<div class="col-12 text-center"><p class="text-danger">Error al cargar equipos</p></div>';
+      }
+    }
+
+    // Función para redirigir a la página de perfil
+    function redirigirAPerfil(dominio) {
+      window.location.href = `perfil_camion.html?dominio=${encodeURIComponent(dominio)}`;
+    }
+
+    // Función para buscar un equipo
     async function buscarEquipo(event) {
       event.preventDefault();
-      const dominio = document.getElementById("dominioInput").value.trim();
+      const dominio = document.getElementById('dominioInput').value.trim().toUpperCase();
       
       if (!dominio) {
-        alert("Por favor, ingresa un dominio válido.");
+        alert("Por favor ingrese un dominio válido");
         return;
       }
 
       try {
         const response = await fetch(`https://artisaapi.onrender.com/api/equipo/dominio/${dominio}`);
-        const equipo = await response.json();
-
-        if (response.status === 404) {
-          alert(`Error: ${equipo.error}`);
-        } else {
-          mostrarEquipo(equipo);
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Equipo no encontrado');
         }
+        redirigirAPerfil(dominio);
       } catch (error) {
-        console.error("Error al buscar equipo:", error);
-        alert("Error al conectar con el servidor.");
+        alert(error.message);
       }
     }
 
-    function mostrarEquipo(equipo) {
-      const container = document.getElementById("equipos-container");
-      container.innerHTML = ""; // Limpiar resultados anteriores
-
-      const cardHTML = `
-        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <div class="card">
-            <div class="card-img">
-              <img src="assets/img/service-1.jpg" alt="Equipo ${equipo.dominio}" class="img-fluid">
-            </div>
-            <h3>${equipo.dominio}</h3>
-            <p>${equipo.lastEvent?.tipo || "Sin información reciente"}</p>
-          </div>
-        </div>
-      `;
-
-      container.innerHTML = cardHTML;
-    }
-
-    // Opcional: Cargar todos los equipos al inicio
-    window.onload = async function() {
-      try {
-        const response = await fetch("https://artisaapi.onrender.com/api/equipo/dominio/disponibles");
-        const dominios = await response.json();
-        const container = document.getElementById("equipos-container");
-        container.innerHTML = "";
-
-        for (const dominio of dominios) {
-          const equipoResponse = await fetch(`https://artisaapi.onrender.com/api/equipo/dominio/${dominio}`);
-          const equipo = await equipoResponse.json();
-          
-          const cardHTML = `
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-              <div class="card">
-                <div class="card-img">
-                  <img src="assets/img/service-1.jpg" alt="Equipo ${dominio}" class="img-fluid">
-                </div>
-                <h3>${dominio}</h3>
-                <p>${equipo.lastEvent?.tipo || "Sin datos"}</p>
-              </div>
-            </div>
-          `;
-
-          container.innerHTML += cardHTML;
-        }
-      } catch (error) {
-        console.error("Error al cargar equipos:", error);
-      }
-    };
+    // Inicializar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      mostrarTodosEquipos();
+      // Inicializar el contador de PureCounter
+      new PureCounter();
+    });
   </script>
 </body>
 </html>
